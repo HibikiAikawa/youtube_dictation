@@ -1,4 +1,3 @@
 #!/bin/sh
 
-bash ./bin/build.sh
-bash ./bin/run.sh $1
+poetry run python manage.py runserver 0.0.0.0:8000
