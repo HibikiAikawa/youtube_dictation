@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ question.name }}</h1>
+{% if question is not None %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{question.youtube_id}}?start={{question.start_time}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><br>
+    <p>{{question.pre_sentence}} _ _ _ _ {{question.post_sentence}}</p> <br>
+    <textarea name="input" cols="50" rows="10"></textarea>
+    <form action="{% url 'check' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">回答</button>
+    </form>
+    
+{% else %}
+<form action="{% url 'solution' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">出題</button>
+</form>
+{% endif %}
+{% endblock %}
