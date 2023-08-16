@@ -1,31 +1,26 @@
 from django.shortcuts import render
 from .models import Question
+from .forms import TextAreaForm
 
 
 def index(request):
     return render(request, "index.html")
 
 
-def get_solution(request):
-    question = Question.objects.order_by('?').first()  # ランダムに一つのQuestionを取得
-    return render(request, "index.html", {"question": question})
+def get_question(request):
+    question = Question.objects.order_by('?').first()
+    form = TextAreaForm()
+    return render(request, "index.html", {"question": question, "form": form})
 
 
-def check_sentence(request):
-    # question = Question.objects.get(pk=question_id)
-    # is_correct = None
+def check_sentence(request, youtube_id, start_time):
+    question = Question.objects.get(youtube_id=youtube_id, start_time=start_time)
+    text = request.POST.get('textarea')
+    print(question.sentence, type(question.sentence))
+    print(text, type(text))
+    if question.sentence == text:
+        message = '正解！'
+    else:
+        message = '不正解！'
 
-    # if request.method == "POST":
-    #     form = SentenceForm(request.POST)
-    #     if form.is_valid():
-    #         is_correct = form.cleaned_data['sentence'] == question.sentence
-    # else:
-    #     form = SentenceForm()
-
-    # context = {
-    #     'form': form,
-    #     'question': question,
-    #     'is_correct': is_correct,
-    # }
-
-    return render(request, 'index.html')
+    return render(request, 'check.html', {"question": question, "message": message})

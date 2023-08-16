@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>あなたの答えは</h1>
+    <h1>{{message}}</h1>
+    
+    <h2>回答</h2>
+    <p>{{question.pre_sentence}} {{question.sentence}} {{question.post_sentence}}</p> <br>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{question.youtube_id}}?start={{question.start_time}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><br>
+
+    <form action="{% url 'question' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">出題</button>
+    </form>
+{% endblock %}

@@ -21,6 +21,6 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('solution/', views.get_solution, name='solution'),
-    path('check/', views.check_sentence, name='check'),
+    path('question/', views.get_question, name='question'),
+    path('check/<str:youtube_id>&<int:start_time>/', views.check_sentence, name='check'),
 ]
