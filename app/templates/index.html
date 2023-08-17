@@ -1,27 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if question is not None %}
-    <h1>下の動画をクリックして聞こえた文章を下に記入しなさい</h1>
-    <iframe id="youtube_iframe" width="560" height="315" src="https://www.youtube.com/embed/{{question.youtube_id}}?start={{question.start_time}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><br>
-    <button id="reload_youtube">もう一度聞く</button><br>
-
-    <p>問題文の前文と後文は以下です。その間の文章を回答してください</p>
-    <p>回答は必ず全て小文字で回答してください。文末のピリオドは必要ありません。</p>
-    <p>{{question.pre_sentence}} _ _ _ _ {{question.post_sentence}}</p> <br>
-    
-    <form action="{% url 'check' youtube_id=question.youtube_id start_time=question.start_time %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p>入力が完了したら回答ボタンをクリックしてください</p>
-        <button type="submit">回答</button><br>
-    </form>
-    
-{% else %}
-出題ボタンを押すと問題が出題されます
-<form action="{% url 'question' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">出題</button>
-</form>
-{% endif %}
+<a href="{% url 'question' %}">question</a>
 {% endblock %}

@@ -10,7 +10,7 @@ def index(request):
 def get_question(request):
     question = Question.objects.order_by('?').first()
     form = TextAreaForm()
-    return render(request, "index.html", {"question": question, "form": form})
+    return render(request, "question/question.html", {"question": question, "form": form})
 
 
 def check_sentence(request, youtube_id, start_time):
