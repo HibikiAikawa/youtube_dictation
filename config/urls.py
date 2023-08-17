@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('question/', views.get_question, name='question'),
-    path('check/<str:youtube_id>&<int:start_time>/', views.check_sentence, name='check'),
+    path('check/<str:youtube_id>&<int:idx>/', views.check_sentence, name='check'),
 ]

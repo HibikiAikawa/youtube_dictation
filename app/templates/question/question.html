@@ -10,7 +10,7 @@
     <p>回答は必ず全て小文字で回答してください。文末のピリオドは必要ありません。</p>
     <p>{{question.pre_sentence}} _ _ _ _ {{question.post_sentence}}</p> <br>
     
-    <form action="{% url 'check' youtube_id=question.youtube_id start_time=question.start_time %}" method="post">
+    <form action="{% url 'check' youtube_id=question.youtube_id idx=question.idx %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <p>入力が完了したら回答ボタンをクリックしてください</p>
